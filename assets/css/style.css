@@ -1,97 +1,113 @@
-/* Importando uma fonte padrão e limpa (Inter, similar à do vídeo) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-
-/* Estilos Globais */
+/* Zerando estilos padrão e definindo a fonte base */
 body {
-    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5; 
+    /* A fonte 'Futura-Book' que você mencionou. O navegador usará sans-serif se não encontrar. */
+    font-family: 'Futura-Book', sans-serif; 
 }
 
 /* =============================================== */
-/* ESTILOS DA TELA DE VERIFICAÇÃO DE IDADE (100% IGUAL AO VÍDEO) */
+/* ESTILOS DA TELA DE VERIFICAÇÃO (PIXEL-PERFECT)  */
 /* =============================================== */
+
+/* Container que cobre a tela inteira com o fundo azul-escuro */
 .age-gate-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente, sem desfoque */
+    background-color: #0c1b2a; /* Cor exata do fundo */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
 }
 
+/* A caixa branca central */
 .age-gate-box {
     background-color: white;
-    padding: 30px 40px;
-    border-radius: 8px; /* Cantos levemente arredondados */
+    padding: 35px 50px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
     text-align: center;
-    max-width: 550px;
+    max-width: 500px;
     width: 90%;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
 }
 
+/* O logo */
 .age-gate-logo {
-    max-width: 200px; /* Ajuste o tamanho conforme o logo */
-    margin-bottom: 25px; /* Espaço entre o logo e o título */
+    max-width: 180px; /* Tamanho do logo no print */
+    margin-bottom: 20px;
 }
 
+/* O texto principal "VOCÊ TEM MAIS DE 18 ANOS?" */
 .age-gate-box h1 {
-    font-weight: 900; /* Fonte bem forte (preta) */
-    font-size: 1.5rem; /* 24px */
-    margin-bottom: 10px;
+    font-size: 1.3rem; /* Tamanho da fonte (aprox. 21px) */
+    font-weight: 900;
     color: #333;
+    margin: 0 0 8px 0;
 }
 
+/* O parágrafo de texto menor */
 .age-gate-box p {
-    font-size: 1rem; /* 16px */
-    color: #555;
-    margin-bottom: 30px;
+    font-size: 0.95rem; /* Tamanho da fonte (aprox. 15px) */
+    color: #666;
+    margin: 0 0 25px 0;
 }
 
+/* Div que segura os dois botões */
 .age-gate-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px; /* Espaço entre os botões */
 }
 
+/* Estilo base para os dois botões */
 .btn-age {
-    padding: 10px 0;
-    width: 130px;
+    flex-grow: 1; /* Faz os botões ocuparem o espaço igualmente */
+    padding: 12px;
     border-radius: 5px;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: bold;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    border: none;
+    transition: opacity 0.2s;
 }
 
 .btn-age:hover {
-    opacity: 0.9;
-    transform: scale(1.05); /* Efeito de crescimento sutil */
+    opacity: 0.85; /* Efeito suave ao passar o mouse */
 }
 
-/* Botão NÃO: Fundo branco, borda e texto azul */
+/* Botão "NÃO" - Cinza claro com texto escuro */
 .btn-no {
-    background-color: #ffffff;
-    color: #007bff; /* Azul padrão do Bootstrap */
-    border: 2px solid #007bff;
+    background-color: #e9e9e9;
+    color: #555;
 }
 
-/* Botão SIM: Fundo azul, texto branco */
+/* Botão "SIM" - Verde com texto branco */
 .btn-yes {
-    background-color: #007bff;
+    background-color: #00a65a;
     color: white;
-    border: 2px solid #007bff; /* Borda da mesma cor para consistência */
 }
 
-
-/* Animação para a saída suave da tela */
+/* Animação de saída da tela */
 .age-gate-container.fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-out;
-    pointer-events: none; /* Impede cliques durante a animação */
+    pointer-events: none;
+}
+
+/* =============================================== */
+/* DECLARAÇÃO DA FONTE 'FUTURA-BOOK'               */
+/* =============================================== */
+@font-face {
+    font-family: 'Futura-Book';
+    /* O navegador vai procurar a fonte nesta pasta. É CRÍTICO que ela esteja lá. */
+    src: url('../fonts/Futura-Book.woff2') format('woff2'),
+         url('../fonts/Futura-Book.woff') format('woff'),
+         url('../fonts/Futura-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
