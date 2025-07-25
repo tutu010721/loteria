@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Adiciona uma classe para fazer a tela de verificação desaparecer com uma animação
         ageGateContainer.classList.add('fade-out');
 
-        // Depois que a animação terminar (600ms), remove a tela da frente e mostra o conteúdo principal
+        // Depois que a animação terminar (500ms), remove a tela da frente e mostra o conteúdo principal
         setTimeout(() => {
             ageGateContainer.style.display = 'none'; // Esconde a verificação de idade
             mainContent.style.display = 'block';     // Mostra o conteúdo principal
-        }, 600);
+        }, 500);
     });
 
     // O que acontece quando clica em "NÃO"
@@ -33,12 +33,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     });
 });
-
-// Adiciona um pouco de CSS no final do arquivo style.css para a animação de fade-out
-// (Pode adicionar esta parte no final do seu arquivo assets/css/style.css)
-/*
-.age-gate-container.fade-out {
-    opacity: 0;
-    transition: opacity 0.6s ease-out;
-}
-*/
