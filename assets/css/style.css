@@ -1,239 +1,83 @@
-/* Importação da Fonte e Definição da Fonte Customizada */
-@font-face {
-    font-family: 'Futura-Book';
-    src: url('../fonts/Futura-Book.eot');
-    src: url('../fonts/Futura-Book.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Futura-Book.woff2') format('woff2'),
-         url('../fonts/Futura-Book.woff') format('woff'),
-         url('../fonts/Futura-Book.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+/* Importando uma fonte para deixar mais elegante */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+/* Estilos Globais */
 body {
-    font-family: 'Futura-Book', 'Inter', sans-serif !important;
-}
-
-/* Estilos do Cabeçalho */
-.topo {
-    background-image: url('../images/bg-top.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.topo-fix {
-    background-color: #005da8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .5rem 0;
-}
-.topo-fix img {
-    width: 45px;
-}
-.topo-cont {
-    padding: 2rem 1rem;
-}
-.topo-fonts h1 {
-    font-size: 1.8rem;
-    color: white;
-}
-.topo-fonts h2 {
-    font-size: 1rem;
-    color: white;
-}
-.image-lateral img {
-    width: 100%;
-    max-width: 400px; /* Adicionado para controle */
-}
-
-/* Estilos do Contador */
-.countdown {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: .7rem 1rem;
-    background-color: #f08824;
-    color: white;
-    gap: 1rem;
-}
-.countdown h1 {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-}
-.countdown-icon h1 {
-    color: #0965a1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.3rem;
-    margin: 0;
-    animation: glow 1.5s infinite alternate;
-}
-@keyframes glow {
-    from { box-shadow: 0 0 5px #ffffff; }
-    to { box-shadow: 0 0 15px #ffffff, 0 0 20px #ffffff; }
-}
-.countdown-icon h2 {
-    color: #ffffff;
-    font-size: 1.4rem;
-    margin: 0 .5rem;
-}
-.countdown-icon h3 {
-    color: #ffffff;
-    font-size: 0.7rem;
-    margin: .3rem 0 0 0;
-}
-
-
-/* Corpo Principal e Cards */
-.container-bg {
-    background: linear-gradient(45deg, #00a9ad, #005ca9);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 1rem;
-}
-.container-bg > h1 {
-    font-size: 1.4rem;
-    color: white;
-    margin-bottom: 1rem;
-}
-.container-principal {
-    margin-bottom: 1.6rem;
-    background-color: #fff !important;
-    width: 450px;
-    max-width: 100%;
-    border-radius: .4rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     padding: 0;
+    background-color: #f0f2f5; /* Um fundo neutro para o conteúdo principal */
 }
-.container-destaque {
-    display: flex;
-    flex-direction: column;
-    margin: 1.2rem auto 2rem auto;
-    background-color: #f39200;
-    width: 450px;
-    max-width: 100%;
-    border-radius: .4rem;
-    padding: 1.4rem 1rem 0 1rem;
-}
-.container-destaque span {
-    margin-top: -2.3rem;
-    margin-bottom: 1rem;
-    background-color: black;
-    padding: .3rem 1.3rem;
-    border-radius: .2rem;
-    font-size: .9rem;
-    color: white;
-}
-.topo-container {
-    background-color: #65a86b;
+
+/* =============================================== */
+/* ESTILOS DA TELA DE VERIFICAÇÃO DE IDADE        */
+/* =============================================== */
+.age-gate-container {
+    position: fixed; /* Fica fixo na tela */
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: .4rem 0;
-    border-radius: .4rem .4rem 0 0;
-}
-.topo-container img {
-    width: 23px;
-}
-.topo-container h1 {
-    color: white !important;
-    font-size: 1.2rem !important;
-    margin: 0 0 0 .4rem;
-}
-.container-principal-p {
-    padding: 1rem .4rem;
-}
-.container-principal-p h1 {
-    color: #0070ae;
-    font-size: 1.5rem;
-}
-.container-principal-p h2 {
-    color: #4d7880;
-    font-size: 1.1rem;
-    text-align: center;
-}
-.container-principal-p h3 {
-    color: #0070ae;
-    font-size: 1.3rem;
-    text-align: center;
-}
-.line {
-    width: 100%;
-    margin: .8rem 0;
-    border-bottom: 1px dashed #bebebe;
-}
-.dezenas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.3rem;
-    margin: 1rem 0;
-}
-.dezenas span {
-    width: 28px;
-    height: 28px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo preto semi-transparente */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0070ae;
-    border-radius: 50%;
-    color: white;
-    font-size: 0.9rem;
+    z-index: 9999; /* Garante que ficará por cima de tudo */
+    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
 }
-.jogos-ocultos {
-    display: none;
-}
-.botoes {
-    margin: 1.3rem auto 0 auto;
+
+.age-gate-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 500px;
     width: 90%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-.btn-pagamento, .btn-ver-mais, .btn-continuar {
-    background-color: #f39200;
-    color: white;
-    font-weight: 500;
-    width: 100%;
-    border: none;
-    padding: .5rem 1rem;
+
+.age-gate-box h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.age-gate-box p {
     font-size: 1rem;
-    border-radius: .2rem;
-    margin-bottom: .6rem;
-    transition: background-color 0.3s;
-}
-.btn-pagamento:hover, .btn-ver-mais:hover, .btn-continuar:hover {
-    background-color: #173e68;
-}
-.btn-ver-mais {
-    background-color: #0070ae;
+    color: #666;
+    margin-bottom: 30px;
 }
 
-/* Estilos do Modal */
-.modal-header-custom {
-    background-color: #0070ae;
+.age-gate-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaço entre os botões */
+}
+
+.btn-age {
+    padding: 12px 0;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-age:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-no {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-yes {
+    background: linear-gradient(45deg, #28a745, #218838); /* Gradiente verde */
     color: white;
-}
-
-/* Media Queries para Responsividade */
-@media (max-width: 576px) {
-    .topo-fonts h1, .topo-fonts h2 {
-        text-align: center;
-    }
-    .countdown {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .dezenas span {
-        width: 24px;
-        height: 24px;
-        font-size: 0.8rem;
-    }
 }
