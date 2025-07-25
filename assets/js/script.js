@@ -1,100 +1,44 @@
-// Adiciona um listener que espera o conteúdo da página carregar antes de rodar o script
+// Espera o documento HTML carregar completamente antes de executar o script
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- LÓGICA DO CONTADOR REGRESSIVO ---
-    function updateCountdown() {
-        const now = new Date();
-        const brasiliaTime = new Date(now.toLocaleString("en-US", { timeZone: "America/Sao_Paulo" }));
+    // --- LÓGICA DA VERIFICAÇÃO DE IDADE ---
 
-        // Data alvo é sempre o final do dia corrente
-        const targetTime = new Date(brasiliaTime);
-        targetTime.setHours(23, 59, 59, 999);
-        
-        const difference = targetTime - brasiliaTime;
+    // Pega os elementos da página que vamos usar
+    const ageGateContainer = document.getElementById('age-gate');
+    const mainContent = document.getElementById('main-content');
+    const btnSim = document.getElementById('btn-sim');
+    const btnNao = document.getElementById('btn-nao');
 
-        if (difference > 0) {
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    // O que acontece quando clica em "SIM"
+    btnSim.addEventListener('click', function() {
+        // Adiciona uma classe para fazer a tela de verificação desaparecer com uma animação
+        ageGateContainer.classList.add('fade-out');
 
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        }
-    }
-    // Inicia o contador e atualiza a cada segundo
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // --- LÓGICA DO PAGAMENTO ---
-    const formModalElement = document.getElementById('formModal');
-    const formModal = new bootstrap.Modal(formModalElement);
-    const loadingModal = new bootstrap.Modal(document.getElementById('loadingModal'));
-
-    const nomeCompletoInput = document.getElementById('nomeCompleto');
-    const cpfInput = document.getElementById('cpf');
-    const whatsappInput = document.getElementById('whatsapp');
-
-    // Função global para ser chamada pelo HTML
-    window.processarPagamento = function(valor, nomeBolao) {
-        document.getElementById('valorPagamento').value = valor;
-        document.getElementById('nomeBolao').value = nomeBolao;
-        formModal.show();
-    }
-
-    // Lógica para buscar nome via API de CPF (VAMOS CONSTRUIR ISSO)
-    cpfInput.addEventListener('blur', async function() {
-        const cpf = cpfInput.value.replace(/\D/g, '');
-        if (cpf.length === 11) {
-            nomeCompletoInput.value = "Buscando nome...";
-            // AQUI FAREMOS A CHAMADA PARA NOSSA API NO RENDER
-            // Exemplo: const response = await fetch(`https://seu-backend.onrender.com/cpf/${cpf}`);
-            // const data = await response.json();
-            // if(data.nome) {
-            //     nomeCompletoInput.value = data.nome;
-            // } else {
-            //     nomeCompletoInput.value = "CPF não encontrado.";
-            // }
-            // Por enquanto, vamos simular:
-            setTimeout(() => {
-                nomeCompletoInput.value = "NOME COMPLETO DE TESTE"; // Simulação
-            }, 1000);
-        }
-    });
-    
-    // Validação e continuação para o checkout
-    document.getElementById('btnContinuar').addEventListener('click', function() {
-        if (!document.getElementById('contatoForm').checkValidity()) {
-            document.getElementById('contatoForm').classList.add('was-validated');
-            return;
-        }
-
-        formModal.hide();
-        loadingModal.show();
-
-        // AQUI FAREMOS A CHAMADA PARA O NOSSO BACKEND NO RENDER
-        // que por sua vez se comunicará com o gateway de pagamento.
-        console.log("Iniciando processo de pagamento final...");
-        setTimeout(() => { // Simula o processo
-             loadingModal.hide();
-             alert("Redirecionando para o gateway de pagamento!");
-             // Exemplo: window.location.href = data.checkout_url;
-        }, 2000);
+        // Depois que a animação terminar (600ms), remove a tela da frente e mostra o conteúdo principal
+        setTimeout(() => {
+            ageGateContainer.style.display = 'none'; // Esconde a verificação de idade
+            mainContent.style.display = 'block';     // Mostra o conteúdo principal
+        }, 600);
     });
 
-    // --- FUNÇÃO ÚNICA PARA "VER MAIS" ---
-    window.toggleJogos = function(elementId) {
-        const jogosDiv = document.getElementById(elementId);
-        const botao = jogosDiv.previousElementSibling.querySelector('button'); // Pega o botão que veio antes
-
-        if (jogosDiv.style.display === 'none' || jogosDiv.style.display === '') {
-            jogosDiv.style.display = 'block';
-            botao.textContent = 'Ver Menos';
-        } else {
-            jogosDiv.style.display = 'none';
-            botao.textContent = 'Ver Mais';
-        }
-    }
+    // O que acontece quando clica em "NÃO"
+    btnNao.addEventListener('click', function() {
+        // Informa o usuário que a página vai fechar
+        alert("Você precisa ser maior de idade para continuar. A página será fechada.");
+        // Tenta fechar a janela/aba do navegador
+        window.close();
+        // Se não conseguir fechar (alguns navegadores bloqueiam), redireciona para uma página segura
+        setTimeout(() => {
+            window.location.href = 'https://www.google.com';
+        }, 500);
+    });
 });
+
+// Adiciona um pouco de CSS no final do arquivo style.css para a animação de fade-out
+// (Pode adicionar esta parte no final do seu arquivo assets/css/style.css)
+/*
+.age-gate-container.fade-out {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+}
+*/
